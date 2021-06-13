@@ -1399,10 +1399,13 @@ class Kubernetes(service.Service):
                 "accessModes": access_modes,
                 "persistentVolumeReclaimPolicy": "Retain",
                 "storageClassName": storage_class,
-                "local": {
+                "hostPath": {
                     "path": local_path
                 },
-                "nodeAffinity": node_affinity
+                "nodeAffinity": node_affinity,
+                "claimRef": {
+                    "name": name
+                }
             }
         }
 
