@@ -55,6 +55,7 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
 
         self.client.create_local_pv(
             name,
+            namespace=self.namespace,
             storage_class=self.context["kubernetes"]["storageclass"],
             size=persistent_volume["size"],
             volume_mode=persistent_volume["volume_mode"],
@@ -66,7 +67,6 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
 
         self.client.create_local_pvc(
             name,
-            namespace=self.namespace,
             storage_class=self.context["kubernetes"]["storageclass"],
             access_modes=persistent_volume_claim["access_modes"],
             size=persistent_volume_claim["size"]
@@ -118,5 +118,6 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
 
         self.client.delete_local_pv(
             name,
+            namespace=self.namespace,
             status_wait=status_wait
         )
