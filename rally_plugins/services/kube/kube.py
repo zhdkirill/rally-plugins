@@ -1398,7 +1398,7 @@ class Kubernetes(service.Service):
                 },
                 "volumeMode": volume_mode,
                 "accessModes": access_modes,
-                "persistentVolumeReclaimPolicy": "Retain",
+                "persistentVolumeReclaimPolicy": "Delete",
                 "storageClassName": storage_class,
                 "hostPath": {
                     "path": local_path
