@@ -93,7 +93,6 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
             image,
             image_pull_policy=image_pull_policy,
             name=name,
-            namespace=self.namespace,
             command=command,
             check_cmd=check_cmd,
             error_regexp=error_regexp,
