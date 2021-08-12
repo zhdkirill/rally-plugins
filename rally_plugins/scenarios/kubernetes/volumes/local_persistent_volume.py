@@ -107,7 +107,13 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
             self.assertNotEqual("Failed", resp.status.phase)
         with atomic.ActionTimer(self,
                                 "kubernetes.check_persistent_volume_status"):
-            resp = self.client.get_local_pv(name)
+            try:
+                resp = self.client.get_local_pv(name)
+            except rest.ApiException as ex:
+                if ex.status == 404:
+                    return
+                else:
+                    raise
             self.assertNotEqual("Failed", resp.status.phase)
 
         self.client.delete_local_pvc(
