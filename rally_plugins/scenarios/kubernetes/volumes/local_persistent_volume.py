@@ -116,7 +116,7 @@ class CreateAndDeletePodWithLocalPVVolume(base.PodWithVolumeBaseScenario):
             status_wait=status_wait
         )
 
-        self.client.delete_local_pv(
-            name,
-            status_wait=status_wait
-        )
+#        self.client.delete_local_pv(
+#            name,
+#            status_wait=status_wait
+#        )
