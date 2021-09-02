@@ -1,6 +1,11 @@
 name: ghcr-ci
 
-on: push
+on:
+  push:
+    branches:
+      - dockerfile
+    tags:
+      - 'v*'
 
 env:
   REGISTRY: ghcr.io
