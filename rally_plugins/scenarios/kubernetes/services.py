@@ -213,22 +213,18 @@ class PodWithNodePortAndCheckService(common_scenario.BaseKubernetesScenario):
 
         svc = self.client.get_service(name, namespace=namespace)
 
+        ip = self.client.get_pod(name, namespace=namespace).status.host_ip
+
         node_port = svc.spec.ports[0].node_port
 
         commonutils.interruptable_sleep(CONF.kubernetes.start_prepoll_delay)
 
         with atomic.ActionTimer(self, "kubernetes.request_node_port_service"):
-            server = self.context["env"]["platforms"]["kubernetes"]["server"]
-
             sleep_time = CONF.kubernetes.status_poll_interval
             retries_total = CONF.kubernetes.status_total_retries
 
             i = 0
-            if server.startswith("http"):
-                ip = server[server.index(":"):server.rindex(":") + 1]
-            else:
-                ip = "://" + server[:server.index(":") + 1]
-            url = ("http" + ip + str(node_port) + "/")
+            url = ("http://" + ip + ":" + str(node_port) + "/")
             while i < retries_total:
                 try:
                     kwargs = {}
