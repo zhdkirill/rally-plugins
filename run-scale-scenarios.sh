@@ -39,7 +39,9 @@ do
 done
 
 # report results
-rally task report --deployment k8s --out /rally-reports/rally-$(date +%d%m%Y-%H%M%S).html
+date=$(date +%d%m%Y-%H%M%S)
+rally task report --deployment k8s --out /rally-reports/rally-${date}.html
+rally task report --deployment k8s --json --out /rally-reports/rally-${date}.json
 
 if [[ -n $err_flag ]]
 then
