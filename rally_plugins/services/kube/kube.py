@@ -20,7 +20,6 @@ from kubernetes.client import api_client
 from kubernetes.client.api import apps_v1_api
 from kubernetes.client.api import batch_v1_api
 from kubernetes.client.api import core_v1_api
-from kubernetes.client.api import extensions_v1beta1_api
 from kubernetes.client.api import storage_v1_api
 from kubernetes.client.api import version_api
 from kubernetes.client import rest
@@ -188,7 +187,6 @@ class Kubernetes(service.Service):
         self.api = api
         self.v1_client = core_v1_api.CoreV1Api(api)
         self.v1_storage = storage_v1_api.StorageV1Api(api)
-        self.v1beta1_ext = extensions_v1beta1_api.ExtensionsV1beta1Api(api)
         self.v1_apps = apps_v1_api.AppsV1Api(api)
         self.v1_batch = batch_v1_api.BatchV1Api(api)
 
